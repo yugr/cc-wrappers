@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Copyright 2026 Yury Gribov
+#
+# The MIT License (MIT)
+# 
+# Use of this source code is governed by MIT license that can be
+# found in the LICENSE.txt file.
+
+set -eu
+
+if test $(readlink -f $WRAPPER_CXX) = $(readlink -f $0); then
+  echo >&2 "$me: invalid target compiler: $WRAPPER_CXX"
+fi
+
+$WRAPPER_CXX ${WRAPPER_PRE_CXXFLAGS:-} "$@" ${WRAPPER_CXXFLAGS:-}
