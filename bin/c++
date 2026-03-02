@@ -13,4 +13,8 @@ if test $(readlink -f $WRAPPER_CXX) = $(readlink -f $0); then
   echo >&2 "$me: invalid target compiler: $WRAPPER_CXX"
 fi
 
-$WRAPPER_CXX ${WRAPPER_PRE_CXXFLAGS:-} "$@" ${WRAPPER_CXXFLAGS:-}
+if test -n "${WRAPPER_BLACKLIST:-}" && echo "$@" | grep -q "${WRAPPER_BLACKLIST:-}"; then
+  $WRAPPER_CXX "$@"
+else
+  $WRAPPER_CXX ${WRAPPER_PRE_CXXFLAGS:-} "$@" ${WRAPPER_CXXFLAGS:-}
+fi
