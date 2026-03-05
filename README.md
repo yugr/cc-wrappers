@@ -12,3 +12,6 @@ and optionally
 ```
 export WRAPPER_CFLAGS=... WRAPPER_CXXFLAGS=... WRAPPER_PRE_CFLAGS=... WRAPPER_PRE_CXXFLAGS
 ```
+
+There is also `WRAPPER_STRIP` to remove bad flags and
+`WRAPPER_BLACKLIST` to ignore additional flags for some files.
