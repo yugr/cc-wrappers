@@ -9,6 +9,10 @@
 
 set -eu
 
+if test -z "${WRAPPER_CXX:-}"; then
+  echo >&2 "$me: WRAPPER_CXX not defined"
+fi
+
 if test $(readlink -f $WRAPPER_CXX) = $(readlink -f $0); then
   echo >&2 "$me: invalid target compiler: $WRAPPER_CXX"
 fi

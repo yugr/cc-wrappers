@@ -11,6 +11,10 @@ set -eu
 
 me=$(basename $0)
 
+if test -z "${WRAPPER_CC:-}"; then
+  echo >&2 "$me: WRAPPER_CC not defined"
+fi
+
 if test $(readlink -f $WRAPPER_CC) = $(readlink -f $0); then
   echo >&2 "$me: invalid target compiler: $WRAPPER_CC"
 fi
